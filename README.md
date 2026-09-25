@@ -19,7 +19,7 @@ It explores the combinatorial state space of the puzzle to find an optimal solut
 1. Clone this repository to your local machine.
 2. Compile the source code using GCC with optimization enabled:
    ```bash
-   gcc -O3 main.c -o square1_solver
+   gcc sq1_solver.c -o square1_solver
    ```
 3. Run the executable:
    ```bash
