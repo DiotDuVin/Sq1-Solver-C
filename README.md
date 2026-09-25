@@ -25,3 +25,14 @@ It explores the combinatorial state space of the puzzle to find an optimal solut
    ```bash
    ./square1_solver
    ```
+
+This project was inspired by the work of Jaap Scherphuis who studied the mathematical structure of multiple variants of the rubik's cube, one being the square-1.
+
+This program explains its use by launching it without any arguments :
+Usage:
+  ./square1_solver <position>          solve a position
+  ./square1_solver -r [N] [seed]       test N random scrambles (défaut: 100), the seed format is a normal integer
+
+Position : 16 or 17 caracters (A-H corners, 1-8 edges)
+Example solved state : A1B2C3D45E6F7G8H-
+Example parity : A1B2C3D46E5F7G8H/ (/ or - represents the orientation of the middle layer)
