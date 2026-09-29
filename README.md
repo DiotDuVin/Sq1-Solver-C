@@ -2,7 +2,7 @@
 
 This project is a relatively optimized solver for the **Square-1** puzzle, developed in C as part of my TIPE (Scientific Research Project) during my CPGE MPI (Mathematics, Physics, and Computer Science) intensive preparatory program. 
 
-It explores the combinatorial state space of the puzzle to find an optimal solution in **fewer than 16 moves** (based on a sample of over 100 000 scrambles).
+It explores the combinatorial state space of the puzzle to find a solution in **fewer than 16 moves** (based on a sample of over 100 000 scrambles).
 
 ## Algorithmic Features
 * **State Space Modeling:** Modeled the complex geometry and shape-shifting permutations of the Square-1 puzzle.
