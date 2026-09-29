@@ -4,6 +4,13 @@ This project is a relatively optimized solver for the **Square-1** puzzle, devel
 
 It explores the combinatorial state space of the puzzle to find a solution in **fewer than 16 moves** (based on a sample of over 100 000 scrambles).
 
+## Performance
+* 100,000 random scrambles
+* 100,000 / 100,000 solved in <16 moves
+* ~2 min 30 total runtime
+* ~667 scrambles/s
+* Single-threaded
+
 ## Algorithmic Features
 * **State Space Modeling:** Modeled the complex geometry and shape-shifting permutations of the Square-1 puzzle.
 * **Two-Phase Algorithm:** Drastically reduced combinatorial complexity by splitting the resolution into two distinct phases using transition and pruning tables.
