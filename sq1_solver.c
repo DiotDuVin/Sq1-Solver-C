@@ -457,9 +457,7 @@ void Pos1_Initialise(Pos1 *p, char inipos[])
     prm[16] = 0;
     memcpy(p->pos, inipos, 24); p->pos[24] = 0;
     b = 0;
-    /* 'a' is used as index in both pos and shape.
-       For a corner pair (AA), a++ skips the 2nd char so shape[a]='C',shape[a+1]='c'
-       and a ends up pointing to the 2nd char of the pair. */
+
     for (a = 0; a < 24; a++) {
         prm[b++] = p->pos[a];
         if (p->pos[a] >= '1' && p->pos[a] <= '8') {
