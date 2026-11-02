@@ -22,6 +22,15 @@ sq1-gui
 Run `./install.sh` again to update after a `git pull`, or `./install.sh --uninstall` to remove everything.
 If `~/.local/bin` is not in your `PATH`, the script tells you the line to add to `~/.bashrc`.
 
+### Windows
+
+No installation needed:
+1. Download the project: **Code → Download ZIP** on GitHub (branch `gui`).
+2. Extract it (right click → *Extract All*). Don't run it from inside the zip.
+3. Double-click **`Square-1.bat`** (or `gui/index.html`). The visualizer opens in your default browser (Edge, Chrome, Firefox).
+
+The solver runs inside the page (WebAssembly), so nothing else is required. To use the command-line solver on Windows, compile `sq1_solver.c` with MinGW (`gcc -O2 sq1_solver.c -o sq1-solver.exe`) or use WSL, where `./install.sh` works as on Linux.
+
 This project is a relatively optimized solver for the **Square-1** puzzle, developed in C as part of my TIPE (Scientific Research Project) during my CPGE MPI (Mathematics, Physics, and Computer Science) intensive preparatory program. 
 
 It explores the combinatorial state space of the puzzle to find a solution in **fewer than 16 moves** (based on a sample of over 100 000 scrambles).
