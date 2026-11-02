@@ -21,7 +21,7 @@ L'URL accepte des paramètres : `index.html#pos=A1B2C3D46E5F7G8H%2F`,
 - Lecture : ▶ / ⏸, pas à pas, curseur, vitesse, clic sur un mouvement.
   Raccourcis clavier : `←` `→`, `Espace`, `Origine`, `Fin`.
 
-Trois modes d'affichage : **2D**, **3D** ou **2D + 3D** (le choix est mémorisé).
+Trois modes d'affichage : **3D** (par défaut), **2D** ou **2D + 3D**. Le choix est mémorisé.
 Dans la vue 3D, glisser pour faire tourner le puzzle (y compris pour voir le dessous),
 molette pour zoomer, double-clic pour revenir à la vue initiale. Les rotations et les
 twists y sont animés en continu.
@@ -42,6 +42,16 @@ sudo apt install clang lld
 `build.sh` produit `sq1.wasm` et `sq1-wasm.js`, qui contient le même binaire encodé en
 base64 pour que la page fonctionne aussi en `file://`. Il faut relancer le script
 après chaque modification de `sq1_solver.c`.
+
+## Fichier unique à distribuer
+
+```bash
+python3 gui/bundle.py
+```
+
+Ce script génère `dist/Square-1.html` (environ 680 Ko), qui contient tout : CSS, three.js, le solveur WebAssembly et le JS. Il est publié dans les *Releases* GitHub ; le lien
+https://github.com/DiotDuVin/Sq1-Solver-C/releases/latest/download/Square-1.html
+télécharge toujours la dernière version.
 
 ## Organisation
 

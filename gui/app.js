@@ -220,7 +220,7 @@ let cur = 0;
 let anim = null;               // id requestAnimationFrame
 let playing = false;
 
-let mode = '2d';               // '2d', '3d' ou 'both'
+let mode = '2d';               // '2d', '3d' ou 'both' (passe en 3D au chargement)
 let view3d = null;             // instance de Sq1View3D (créée à la demande)
 
 /**
@@ -432,7 +432,7 @@ document.querySelectorAll('.viewmode button').forEach(b => { b.onclick = () => s
 window.addEventListener('DOMContentLoaded', () => {
   let m = null;
   try { m = localStorage.getItem('sq1-view'); } catch (e) { /* stockage indisponible */ }
-  if (m === '3d' || m === 'both') setMode(m);
+  setMode(m === '2d' || m === 'both' ? m : '3d');   // 3D par défaut
 });
 refresh();
 /** Paramètres d'URL (utilisés par la commande sq1-gui) : #pos=…, #scramble=…, #view=2d|3d|both */

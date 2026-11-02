@@ -1,5 +1,7 @@
 # Square-1 Two-Phase Solver in C
 
+**▶ [Download the visualizer (Square-1.html)](https://github.com/DiotDuVin/Sq1-Solver-C/releases/latest/download/Square-1.html)**: a single file that works on Windows, macOS and Linux. Open it in your browser to solve any position and watch the solution in 3D.
+
 ## Quick start
 
 ```bash
@@ -24,12 +26,9 @@ If `~/.local/bin` is not in your `PATH`, the script tells you the line to add to
 
 ### Windows
 
-No installation needed:
-1. Download the project: **Code → Download ZIP** on GitHub (branch `gui`).
-2. Extract it (right click → *Extract All*). Don't run it from inside the zip.
-3. Double-click **`Square-1.bat`** (or `gui/index.html`). The visualizer opens in your default browser (Edge, Chrome, Firefox).
+Download **[Square-1.html](https://github.com/DiotDuVin/Sq1-Solver-C/releases/latest/download/Square-1.html)** and double-click it. That's it: the solver runs inside the page (WebAssembly).
 
-The solver runs inside the page (WebAssembly), so nothing else is required. To use the command-line solver on Windows, compile `sq1_solver.c` with MinGW (`gcc -O2 sq1_solver.c -o sq1-solver.exe`) or use WSL, where `./install.sh` works as on Linux.
+Alternatively, download the project (**Code → Download ZIP**, branch `gui`), extract it and double-click `Square-1.bat`. To use the command-line solver on Windows, compile `sq1_solver.c` with MinGW (`gcc -O2 sq1_solver.c -o sq1-solver.exe`) or use WSL, where `./install.sh` works as on Linux.
 
 This project is a relatively optimized solver for the **Square-1** puzzle, developed in C as part of my TIPE (Scientific Research Project) during my CPGE MPI (Mathematics, Physics, and Computer Science) intensive preparatory program. 
 
