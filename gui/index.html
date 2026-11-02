@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Square-1 Visualiseur</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Square-1 <span>visualiseur du solveur deux phases</span></h1>
+  </header>
+
+  <main>
+    <section class="card inputs">
+      <div class="field">
+        <label for="pos">Position (16/17 caractères)</label>
+        <div class="row">
+          <input id="pos" spellcheck="false" autocomplete="off" value="A1B2C3D46E5F7G8H/">
+          <button id="btn-solve" class="primary">Résoudre</button>
+          <button id="btn-random">Position aléatoire</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="scramble">… ou un mélange en notation, appliqué à l'état résolu</label>
+        <div class="row">
+          <input id="scramble" spellcheck="false" autocomplete="off" placeholder="(1,0)/(-1,-1)/(0,-3)/(-3,0)/">
+          <button id="btn-gen" title="Génère un mélange aléatoire valide (12 twists)">Générer</button>
+          <button id="btn-scramble">Mélanger puis résoudre</button>
+        </div>
+      </div>
+      <p id="status" class="status">Chargement du solveur…</p>
+    </section>
+
+    <section class="card viewer">
+      <div class="views">
+        <figure>
+          <figcaption>Couche du haut</figcaption>
+          <svg id="svg-top" viewBox="-150 -150 300 300" role="img" aria-label="Couche du haut"></svg>
+        </figure>
+        <figure class="mid">
+          <figcaption>Milieu <span id="mid-label"></span></figcaption>
+          <svg id="svg-mid" viewBox="-150 -150 300 300" role="img" aria-label="Couche médiane"></svg>
+        </figure>
+        <figure>
+          <figcaption>Couche du bas <small>(vue de dessus, par transparence)</small></figcaption>
+          <svg id="svg-bot" viewBox="-150 -150 300 300" role="img" aria-label="Couche du bas"></svg>
+        </figure>
+      </div>
+
+      <div class="now">
+        <div><span class="k">Étape</span> <b id="step-count">0 / 0</b></div>
+        <div><span class="k">Prochain mouvement</span> <b id="next-move">—</b></div>
+        <div class="grow"><span class="k">État</span> <code id="state-str">—</code></div>
+      </div>
+
+      <div class="player">
+        <button id="btn-first" title="Début (Origine)">⏮</button>
+        <button id="btn-prev" title="Étape précédente (←)">◀</button>
+        <button id="btn-play" class="primary play" title="Lecture / pause (Espace)">▶</button>
+        <button id="btn-next" title="Étape suivante (→)">▶|</button>
+        <button id="btn-last" title="Fin (Fin)">⏭</button>
+        <input id="timeline" type="range" min="0" max="0" value="0" aria-label="Position dans la solution">
+        <label class="speed">Vitesse
+          <select id="speed">
+            <option value="1400">lente</option>
+            <option value="700" selected>normale</option>
+            <option value="350">rapide</option>
+            <option value="150">très rapide</option>
+          </select>
+        </label>
+      </div>
+
+      <div id="moves" class="moves" aria-label="Liste des mouvements"></div>
+      <div class="legend">
+        <span><i class="sw scramble"></i>mélange</span>
+        <span><i class="sw p1"></i>phase 1 : retrouver la forme du cube</span>
+        <span><i class="sw p2"></i>phase 2 : permuter les pièces</span>
+      </div>
+    </section>
+
+    <section class="card help">
+      <h2>Lecture</h2>
+      <ul>
+        <li><b>(a,b)</b> : la couche du haut tourne de <i>a</i>×30° et celle du bas de <i>b</i>×30°, dans le sens horaire vu depuis chaque face (convention WCA). <b>/</b> : twist, la moitié droite (à droite du trait pointillé) fait un demi-tour.</li>
+        <li>Coins <b>A–H</b> et arêtes <b>1–8</b> comme dans le solveur. Les pièces A–D et 1–4 sont blanches (couche du haut), E–H et 5–8 jaunes (couche du bas) ; les bandes de couleur représentent les faces latérales.</li>
+        <li>Raccourcis : <kbd>←</kbd> <kbd>→</kbd> pour avancer pas à pas, <kbd>Espace</kbd> pour lire, et clic sur un mouvement pour y sauter.</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="sq1-wasm.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

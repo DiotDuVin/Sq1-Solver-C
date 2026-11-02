@@ -34,6 +34,9 @@ It explores the combinatorial state space of the puzzle to find a solution in **
    ./square1_solver
    ```
 
+## Graphical interface
+The `gui/` folder contains a web visualizer that runs this exact solver compiled to WebAssembly and animates the solution move by move. Open `gui/index.html` in a browser. See [`gui/README.md`](gui/README.md) for details.
+
 This project was inspired by the work of Jaap Scherphuis who studied the mathematical structure of multiple variants of the rubik's cube, one being the square-1.
 
 This program explains its use by launching it without any arguments :

@@ -53,6 +53,10 @@ char moveList[MAXMOVES];
 int moveLen = 0;
 int moveNbTwist = 0;
 
+// Copie de la dernière solution trouvée (utilisée par l'interface graphique)
+char solutionMoves[MAXMOVES];
+int solutionLen = 0;
+
 void push_move(char m){
     moveList[moveLen++] = m;
     if (m == 0) moveNbTwist++;
@@ -623,6 +627,8 @@ void print_turn(int a)
 void print_solution(void)
 {
     int a, b, c;
+    memcpy(solutionMoves, moveList, (size_t)moveLen);
+    solutionLen = moveLen;
     printf("Solution (%d twists) : ", moveNbTwist);
     turbostock=umax(turbostock,moveNbTwist);
     for (a = 0; a < moveLen; a++) {
@@ -965,6 +971,7 @@ int SolveOne(Pos1 *p, int verbose)
 
 // main
 
+#ifndef SQ1_NO_MAIN
 
 void print_usage(const char *prog)
 {
@@ -1020,3 +1027,5 @@ int main(int argc, char *argv[])
         printf("Aucune solution trouvée (vérifiez la position).\n");
     return 0;
 }
+
+#endif // SQ1_NO_MAIN
