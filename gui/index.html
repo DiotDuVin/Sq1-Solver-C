@@ -33,6 +33,14 @@
     </section>
 
     <section class="card viewer">
+      <div class="viewmode" role="group" aria-label="Type de vue">
+        <button data-mode="2d" aria-pressed="true">2D</button>
+        <button data-mode="3d" aria-pressed="false">3D</button>
+        <button data-mode="both" aria-pressed="false">2D + 3D</button>
+      </div>
+      <div id="view3d" class="view3d" hidden>
+        <p class="hint">Glisser pour tourner · molette pour zoomer · double-clic pour recentrer</p>
+      </div>
       <div class="views">
         <figure>
           <figcaption>Couche du haut</figcaption>
@@ -84,12 +92,15 @@
       <ul>
         <li><b>(a,b)</b> : la couche du haut tourne de <i>a</i>×30° et celle du bas de <i>b</i>×30°, dans le sens horaire vu depuis chaque face (convention WCA). <b>/</b> : twist, la moitié droite (à droite du trait pointillé) fait un demi-tour.</li>
         <li>Coins <b>A–H</b> et arêtes <b>1–8</b> comme dans le solveur. Les pièces A–D et 1–4 sont blanches (couche du haut), E–H et 5–8 jaunes (couche du bas) ; les bandes de couleur représentent les faces latérales.</li>
+        <li>Vue <b>3D</b> : glisser pour faire tourner le puzzle (y compris pour voir le dessous), molette pour zoomer, double-clic pour revenir à la vue initiale.</li>
         <li>Raccourcis : <kbd>←</kbd> <kbd>→</kbd> pour avancer pas à pas, <kbd>Espace</kbd> pour lire, et clic sur un mouvement pour y sauter.</li>
       </ul>
     </section>
   </main>
 
+  <script src="vendor/three.min.js"></script>
   <script src="sq1-wasm.js"></script>
   <script src="app.js"></script>
+  <script src="view3d.js"></script>
 </body>
 </html>

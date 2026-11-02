@@ -16,7 +16,12 @@ Ouvrir `index.html` dans un navigateur (double-clic, aucun serveur nécessaire).
 - Lecture : ▶ / ⏸, pas à pas, curseur, vitesse, clic sur un mouvement.
   Raccourcis clavier : `←` `→`, `Espace`, `Origine`, `Fin`.
 
-Les vues montrent la couche du haut vue de dessus, la couche médiane (carré ou kite)
+Trois modes d'affichage : **2D**, **3D** ou **2D + 3D** (le choix est mémorisé).
+Dans la vue 3D, glisser pour faire tourner le puzzle (y compris pour voir le dessous),
+molette pour zoomer, double-clic pour revenir à la vue initiale. Les rotations et les
+twists y sont animés en continu.
+
+Les vues 2D montrent la couche du haut vue de dessus, la couche médiane (carré ou kite)
 et la couche du bas vue *de dessus, par transparence*, pour que la moitié qui
 tourne lors d'un twist `/` soit à droite du trait pointillé sur les deux vues.
 
@@ -40,6 +45,8 @@ après chaque modification de `sq1_solver.c`.
 | `wasm/sq1_wasm.c` | Inclut `../../sq1_solver.c` sans son `main`, redirige les `printf`, et expose `sq1_init`, `sq1_solve` (résultat en JSON avec l'état après chaque étape). |
 | `wasm/libc/*.h` | En-têtes minimaux, pour compiler sans libc. |
 | `app.js` | Dessin SVG des pièces, animations, simulation des mouvements pour les mélanges. |
+| `view3d.js` | Vue 3D : les polygones de la vue 2D extrudés avec three.js, autocollants et caméra orbitale. |
+| `vendor/three.min.js` | three.js r149 (licence MIT, `vendor/three.LICENSE`), inclus pour fonctionner hors ligne et en `file://`. |
 | `index.html`, `style.css` | Page et mise en forme. |
 
 Côté `sq1_solver.c`, seules deux petites modifications ont été faites : la dernière

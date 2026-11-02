@@ -220,7 +220,16 @@ let cur = 0;
 let anim = null;               // id requestAnimationFrame
 let playing = false;
 
+let mode = '2d';               // '2d', '3d' ou 'both'
+let view3d = null;             // instance de Sq1View3D (créée à la demande)
+
+/**
+ * Dessine l'état. Options : top / bot (rotation en cours, degrés), flip et half
+ * (twist en 2D), state3d + twist (twist en 3D : état de départ et angle en rad).
+ */
 function draw(state, o = {}) {
+  if (view3d && mode !== '2d') view3d.draw(o.state3d || state, o);
+  if (mode === '3d') return;
   const flip = o.flip ?? 1, half = !!o.half;
   ui.top.innerHTML = layerSVG(state, false, o.top || 0, flip, half);
   ui.bot.innerHTML = layerSVG(state, true, o.bot || 0, flip, half);
@@ -283,8 +292,9 @@ function animate(dir, done) {
     const p = Math.min(1, (now - t0) / dur), e = ease(p);
     if (st.twist) {
       const c = Math.cos(Math.PI * e);
-      if (e < 0.5) draw(from, { flip: c, half: true });
-      else draw(to, { flip: -c, half: true });
+      const o3 = { state3d: from, twist: Math.PI * e };
+      if (e < 0.5) draw(from, { flip: c, half: true, ...o3 });
+      else draw(to, { flip: -c, half: true, ...o3 });
     } else {
       draw(from, { top: dir * shortTurn(st.top) * 30 * e, bot: -dir * shortTurn(st.bottom) * 30 * e });
     }
@@ -397,7 +407,33 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'End') { pause(); jump(steps.length); }
 });
 
+function setMode(m) {
+  if (m !== '2d' && !view3d) {
+    try {
+      if (typeof THREE === 'undefined') throw new Error('three.js introuvable');
+      view3d = new Sq1View3D($('view3d'));
+    } catch (err) {
+      setStatus('Vue 3D indisponible : ' + esc(err.message), true);
+      m = '2d';
+    }
+  }
+  mode = m;
+  $('view3d').hidden = m === '2d';
+  document.querySelector('.views').hidden = m === '3d';
+  document.querySelectorAll('.viewmode button').forEach(b => b.setAttribute('aria-pressed', b.dataset.mode === m));
+  try { localStorage.setItem('sq1-view', m); } catch (e) { /* stockage indisponible */ }
+  if (view3d) view3d.resize();
+  if (!anim) refresh();
+}
+document.querySelectorAll('.viewmode button').forEach(b => { b.onclick = () => setMode(b.dataset.mode); });
+
 // ------------------------------------------------------------- démarrage
+// (après le chargement de view3d.js, inclus après ce fichier)
+window.addEventListener('DOMContentLoaded', () => {
+  let m = null;
+  try { m = localStorage.getItem('sq1-view'); } catch (e) { /* stockage indisponible */ }
+  if (m === '3d' || m === 'both') setMode(m);
+});
 refresh();
 loadWasm()
   .then(() => solve(ui.pos.value.trim()))
