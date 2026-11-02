@@ -6,7 +6,12 @@ c'est exactement le même code que la version en ligne de commande.
 
 ## Utilisation
 
-Ouvrir `index.html` dans un navigateur (double-clic, aucun serveur nécessaire).
+Le plus simple : `./install.sh` à la racine du dépôt, puis la commande `sq1-gui`
+(`sq1-gui --help` pour les options). On peut aussi ouvrir `index.html` directement
+dans un navigateur (double-clic, aucun serveur nécessaire).
+
+L'URL accepte des paramètres : `index.html#pos=A1B2C3D46E5F7G8H%2F`,
+`#scramble=(1,0)/(-1,-1)/`, `#view=3d`.
 
 - **Position** : même format que le programme (`A1B2C3D45E6F7G8H-`), puis *Résoudre*.
 - **Position aléatoire** : position bien mélangée (40 twists aléatoires), puis résolution.

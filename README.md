@@ -1,5 +1,27 @@
 # Square-1 Two-Phase Solver in C
 
+## Quick start
+
+```bash
+git clone -b gui https://github.com/DiotDuVin/Sq1-Solver-C.git
+cd Sq1-Solver-C
+./install.sh
+sq1-gui
+```
+
+`install.sh` installs two commands in `~/.local/bin` (plus a "Square-1 Solver" entry in the application menu on Linux):
+
+| Command | What it does |
+|---|---|
+| `sq1-gui` | Opens the 2D/3D visualizer in your browser |
+| `sq1-gui A1B2C3D46E5F7G8H/` | Solves this position and animates the solution |
+| `sq1-gui -s "(1,0)/(-1,-1)/"` | Animates this scramble, then its solution |
+| `sq1-gui --3d …` | Opens directly in 3D view (`--2d`, `--both`) |
+| `sq1-solver <position>` | Command-line solver (same as below, compiled with `gcc -O2`) |
+
+Run `./install.sh` again to update after a `git pull`, or `./install.sh --uninstall` to remove everything.
+If `~/.local/bin` is not in your `PATH`, the script tells you the line to add to `~/.bashrc`.
+
 This project is a relatively optimized solver for the **Square-1** puzzle, developed in C as part of my TIPE (Scientific Research Project) during my CPGE MPI (Mathematics, Physics, and Computer Science) intensive preparatory program. 
 
 It explores the combinatorial state space of the puzzle to find a solution in **fewer than 16 moves** (based on a sample of over 100 000 scrambles).
@@ -35,7 +57,7 @@ It explores the combinatorial state space of the puzzle to find a solution in **
    ```
 
 ## Graphical interface
-The `gui/` folder contains a web visualizer that runs this exact solver compiled to WebAssembly and animates the solution move by move. Open `gui/index.html` in a browser. See [`gui/README.md`](gui/README.md) for details.
+The `gui/` folder contains a web visualizer that runs this exact solver compiled to WebAssembly and animates the solution move by move. Run `sq1-gui` (see *Quick start*) or open `gui/index.html` in a browser. See [`gui/README.md`](gui/README.md) for details.
 
 This project was inspired by the work of Jaap Scherphuis who studied the mathematical structure of multiple variants of the rubik's cube, one being the square-1.
 

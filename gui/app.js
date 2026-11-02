@@ -435,6 +435,17 @@ window.addEventListener('DOMContentLoaded', () => {
   if (m === '3d' || m === 'both') setMode(m);
 });
 refresh();
+/** Paramètres d'URL (utilisés par la commande sq1-gui) : #pos=…, #scramble=…, #view=2d|3d|both */
+function startFromHash() {
+  const h = new URLSearchParams(location.hash.slice(1));
+  const view = h.get('view');
+  if (view === '2d' || view === '3d' || view === 'both') setMode(view);
+  if (h.get('scramble')) { ui.scramble.value = h.get('scramble'); doScramble(); return; }
+  if (h.get('pos')) ui.pos.value = h.get('pos');
+  solve(ui.pos.value.trim());
+}
+window.addEventListener('hashchange', () => { if (wasm) startFromHash(); });
+
 loadWasm()
-  .then(() => solve(ui.pos.value.trim()))
+  .then(startFromHash)
   .catch(err => setStatus('Impossible de charger le solveur WebAssembly : ' + esc(err.message), true));
